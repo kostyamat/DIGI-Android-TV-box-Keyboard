@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#121212">
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Статус: Завантаження..."
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnOpenSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Відкрити налаштування"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADB команди (натисніть для копіювання):"
+        android:textColor="#AAAAAA"
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/cmdEnableService"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="adb shell settings put secure enabled_accessibility_services com.kostyamat.r2r_q/com.kostyamat.r2r_q.KeyInterceptorService"
+                android:textAllCaps="false"
+                android:gravity="start|center_vertical"
+                android:textColor="#00E676"
+                android:textSize="12sp"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/cmdActivateAccessibility"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="adb shell settings put secure accessibility_enabled 1"
+                android:textAllCaps="false"
+                android:gravity="start|center_vertical"
+                android:textColor="#00E676"
+                android:textSize="12sp"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/cmdActiveBucket"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="adb shell am set-standby-bucket com.kostyamat.r2r_q active"
+                android:textAllCaps="false"
+                android:gravity="start|center_vertical"
+                android:textColor="#00E676"
+                android:textSize="12sp"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/cmdAllowRestricted"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow"
+                android:textAllCaps="false"
+                android:gravity="start|center_vertical"
+                android:textColor="#00E676"
+                android:textSize="12sp"
+                android:padding="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

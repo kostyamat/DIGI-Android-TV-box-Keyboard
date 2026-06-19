@@ -1,0 +1,8 @@
+<resources>
+    <!-- Use standard AppCompat theme as a base for AppCompatActivity -->
+    <style name="Theme.DiGI_R2A_Q" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">#00E676</item>
+    </style>
+</resources>

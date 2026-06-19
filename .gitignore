@@ -1,0 +1,35 @@
+# Build artifacts
+.gradle/
+build/
+app/build/
+*.iml
+
+# Local configuration
+local.properties
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iws
+*.ipr
+out/
+
+# Android Studio - Navigation Editor
+.idea/navEditor.xml
+
+# Captures
+captures/
+
+# Keystore files
+*.jks
+*.keystore
+
+# External Native Build
+.externalNativeBuild/
+.cxx/
+
+# Log files
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db

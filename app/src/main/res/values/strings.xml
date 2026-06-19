@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DiGI_R2A_Q</string>
+    <string name="accessibility_service_description">Перехоплює натискання кнопки q/Q на фізичній клавіатурі та емулює введення відповідного символу.</string>
+    <string name="accessibility_service_label">Q/Q Key Input Fixer</string>
+</resources>
