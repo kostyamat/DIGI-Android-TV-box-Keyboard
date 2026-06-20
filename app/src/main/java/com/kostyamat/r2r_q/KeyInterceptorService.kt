@@ -2,7 +2,7 @@ package com.kostyamat.r2r_q
 
 import android.accessibilityservice.AccessibilityService
 import android.content.Context
-import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.PixelFormat
 import android.graphics.drawable.GradientDrawable
@@ -15,14 +15,13 @@ import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.widget.TextView
 
-class KeyInterceptorService : AccessibilityService() {
+class KeyInterceptorService : AccessibilityService(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private var currentLanguageIndex = 0
-    private val languages = arrayOf("English", "Spanish", "Ukrainian", "Russian")
-    // Скорочені назви для красивого відображення в кутку екрана
-    private val langShort = arrayOf("EN", "ES", "UA", "RU")
+    private val allLangShort = arrayOf("EN", "ES", "UA", "RU")
+    private var activeLanguageIndices = mutableListOf(0, 1, 2, 3)
+    private var currentIndexInActiveList = 0
 
-    // Матриця символів [EN, ES, UA, RU] -> Pair(Мала, Велика)
+    // Main layout matrix: [EN, ES, UA, RU] -> Pair(Lower, Upper)
     private val keyMap = mapOf(
         KeyEvent.KEYCODE_A to arrayOf(Pair("a", "A"), Pair("a", "A"), Pair("ф", "Ф"), Pair("ф", "Ф")),
         KeyEvent.KEYCODE_B to arrayOf(Pair("b", "B"), Pair("b", "B"), Pair("и", "И"), Pair("и", "И")),
@@ -60,128 +59,165 @@ class KeyInterceptorService : AccessibilityService() {
         KeyEvent.KEYCODE_RIGHT_BRACKET to arrayOf(Pair("]", "}"), Pair("+", "*"), Pair("ї", "Ї"), Pair("ъ", "Ъ"))
     )
 
+    // AltGr (Right Alt) symbols
+    private val altGrMap = mapOf(
+        KeyEvent.KEYCODE_E to "€",
+        KeyEvent.KEYCODE_L to "ł",
+        KeyEvent.KEYCODE_U to "ґ",
+        KeyEvent.KEYCODE_I to "і",
+        KeyEvent.KEYCODE_S to "ś",
+        KeyEvent.KEYCODE_N to "ñ"
+    )
+
     private var windowManager: WindowManager? = null
     private var overlayTextView: TextView? = null
     private val hideHandler = Handler(Looper.getMainLooper())
     private val hideRunnable = Runnable { removeOverlay() }
+    private lateinit var prefs: SharedPreferences
 
     override fun onServiceConnected() {
         super.onServiceConnected()
         windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        Log.d("KeyInterceptor", "Service connected with Overlay Layout Support")
+        prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
+        prefs.registerOnSharedPreferenceChangeListener(this)
+        
+        loadSettings()
+        Log.d("KeyInterceptor", "Service connected. Direct IME mode enabled.")
+    }
+
+    private fun loadSettings() {
+        val newActive = mutableListOf<Int>()
+        if (prefs.getBoolean("lang_en", true)) newActive.add(0)
+        if (prefs.getBoolean("lang_es", true)) newActive.add(1)
+        if (prefs.getBoolean("lang_ua", true)) newActive.add(2)
+        if (prefs.getBoolean("lang_ru", true)) newActive.add(3)
+        
+        if (newActive.isEmpty()) newActive.add(0)
+        activeLanguageIndices = newActive
+
+        if (currentIndexInActiveList >= activeLanguageIndices.size) {
+            currentIndexInActiveList = 0
+        }
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        loadSettings()
+    }
+
+    override fun onKeyEvent(event: KeyEvent): Boolean {
+        // 1. Language Cycle: CTRL + SPACE
+        if (event.keyCode == KeyEvent.KEYCODE_SPACE && event.isCtrlPressed) {
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                currentIndexInActiveList = (currentIndexInActiveList + 1) % activeLanguageIndices.size
+                val realLangIndex = activeLanguageIndices[currentIndexInActiveList]
+                showLanguageOverlay(allLangShort[realLangIndex])
+            }
+            return true
+        }
+
+        // 2. AltGr (Right Alt) Support
+        val isAltGr = (event.metaState and KeyEvent.META_ALT_RIGHT_ON) != 0
+        if (isAltGr && event.action == KeyEvent.ACTION_DOWN) {
+            val altChar = altGrMap[event.keyCode]
+            if (altChar != null) {
+                injectChar(altChar)
+                return true
+            }
+        }
+
+        // 3. Custom Translation Matrix
+        val translationArray = keyMap[event.keyCode]
+        if (translationArray != null) {
+            // Ignore if Ctrl is pressed or it's a virtual event
+            if (event.isCtrlPressed || (event.isAltPressed && !isAltGr) || event.deviceId <= 0) return false
+
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                val isShifted = event.isShiftPressed xor event.isCapsLockOn
+                val realLangIndex = activeLanguageIndices[currentIndexInActiveList]
+                val pair = translationArray[realLangIndex]
+                val charToInsert = if (isShifted) pair.second else pair.first
+
+                injectChar(charToInsert)
+            }
+            return true
+        }
+        return super.onKeyEvent(event)
+    }
+
+    private fun injectChar(char: String) {
+        val ime = KeyInterceptorIME.getInstance()
+        if (ime != null) {
+            val success = ime.commitTextDirectly(char)
+            if (!success) {
+                showLanguageOverlay("NO FOCUS", isError = true)
+            }
+        } else {
+            showLanguageOverlay("IME DISABLED", isError = true)
+            Log.e("KeyInterceptor", "IME Instance is null!")
+        }
+    }
+
+    private fun showLanguageOverlay(text: String, isError: Boolean = false) {
+        if (windowManager == null) return
+        
+        hideHandler.removeCallbacks(hideRunnable)
+        
+        if (overlayTextView == null) {
+            overlayTextView = TextView(this).apply {
+                setTextColor(Color.WHITE)
+                textSize = 24f
+                setTypeface(android.graphics.Typeface.SANS_SERIF, android.graphics.Typeface.BOLD)
+                setPadding(50, 25, 50, 25)
+                gravity = Gravity.CENTER
+            }
+
+            val params = WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                PixelFormat.TRANSLUCENT
+            ).apply {
+                gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                y = 80 // TV-safe top margin
+            }
+
+            try {
+                windowManager?.addView(overlayTextView, params)
+            } catch (e: Exception) { return }
+        }
+
+        val bgAlpha = 200
+        val bgColor = if (isError) Color.argb(bgAlpha, 180, 0, 0) else Color.argb(bgAlpha, 40, 40, 40)
+        
+        val backgroundDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            setColor(bgColor)
+            cornerRadius = 30f
+            setStroke(3, if (isError) Color.RED else Color.LTGRAY)
+        }
+
+        overlayTextView?.apply {
+            this.text = text
+            this.background = backgroundDrawable
+        }
+
+        hideHandler.postDelayed(hideRunnable, 1500)
+    }
+
+    private fun removeOverlay() {
+        if (windowManager != null && overlayTextView != null) {
+            try { windowManager?.removeView(overlayTextView) } catch (e: Exception) {}
+            overlayTextView = null
+        }
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {}
     override fun onInterrupt() {}
 
-    override fun onKeyEvent(event: KeyEvent): Boolean {
-
-        // 1. ПЕРЕХОПЛЕННЯ CTRL + SPACE
-        if (event.keyCode == KeyEvent.KEYCODE_SPACE && event.isCtrlPressed) {
-            if (event.action == KeyEvent.ACTION_DOWN) {
-                currentLanguageIndex = (currentLanguageIndex + 1) % languages.size
-                val textToShow = langShort[currentLanguageIndex]
-
-                Log.d("KeyInterceptor", "Language changed to: ${languages[currentLanguageIndex]}")
-
-                Handler(Looper.getMainLooper()).post {
-                    showLanguageOverlay(textToShow)
-                }
-            }
-            return true
-        }
-
-        // 2. СТАНДАРТНИЙ ПЕРЕКЛАД ЛІТЕР
-        val translationArray = keyMap[event.keyCode]
-        if (translationArray != null) {
-            if (event.isCtrlPressed || event.isAltPressed) {
-                return false
-            }
-            if (event.deviceId <= 0) {
-                return false
-            }
-
-            if (event.action == KeyEvent.ACTION_DOWN) {
-                val isShifted = event.isShiftPressed xor event.isCapsLockOn
-                val languagePair = translationArray[currentLanguageIndex]
-                val charToInsert = if (isShifted) languagePair.second else languagePair.first
-
-                val injectIntent = Intent(KeyInterceptorIME.ACTION_INJECT_KEY).apply {
-                    putExtra(KeyInterceptorIME.EXTRA_KEY_CODE, event.keyCode)
-                    putExtra(KeyInterceptorIME.EXTRA_STRING_CHAR, charToInsert)
-                    setPackage(packageName)
-                }
-                sendBroadcast(injectIntent)
-            }
-            return true
-        }
-
-        return super.onKeyEvent(event)
-    }
-
-    // МЕТОД МАЛЮВАННЯ ВІКНА ПОВЕРХ ІНШИХ ПРОГРАМ (З КОЛЬОРАМИ)
-    private fun showLanguageOverlay(text: String) {
-        if (windowManager == null) return
-
-        if (overlayTextView != null) {
-            overlayTextView?.text = text
-            hideHandler.removeCallbacks(hideRunnable)
-            hideHandler.postDelayed(hideRunnable, 3000) // Залишив 3 секунди, 10 забагато висить
-            return
-        }
-
-        // Локально створюємо кастомний фон: Синій контейнер із жовтим кантиком
-        val backgroundDrawable = GradientDrawable().apply {
-            shape = GradientDrawable.RECTANGLE
-            setColor(Color.parseColor("#0057B7")) // Контрастний синій фон
-            cornerRadius = 12f // М'яке заокруглення кутів
-            setStroke(2, Color.parseColor("#FFD700")) // Чітка жовта рамка
-        }
-
-        // Формуємо жовтий жирний текст на нашому синьому фоні
-        overlayTextView = TextView(this).apply {
-            this.text = text
-            setTextColor(Color.parseColor("#FFD700")) // Яскравий жовтий колір тексту
-            textSize = 22f // Збільшений розмір для впевненого читання здалеку
-            setTypeface(android.graphics.Typeface.DEFAULT_BOLD)
-            background = backgroundDrawable // Заряджаємо наш GradientDrawable
-            setPadding(35, 15, 35, 15)
-            gravity = Gravity.CENTER
-        }
-
-        val params = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-            PixelFormat.TRANSLUCENT
-        ).apply {
-            gravity = Gravity.BOTTOM or Gravity.END // Нижній правий кут
-            x = 60 // Відступ від правого краю екрана
-            y = 60 // Відступ від нижнього краю екрана
-        }
-
-        try {
-            windowManager?.addView(overlayTextView, params)
-            hideHandler.postDelayed(hideRunnable, 3000)
-        } catch (e: Exception) {
-            Log.e("KeyInterceptor", "Failed to add overlay window.", e)
-        }
-    }
-
-    private fun removeOverlay() {
-        if (windowManager != null && overlayTextView != null) {
-            try {
-                windowManager?.removeView(overlayTextView)
-            } catch (e: Exception) {
-                // Вікно вже прибрано
-            }
-            overlayTextView = null
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
+        if (::prefs.isInitialized) prefs.unregisterOnSharedPreferenceChangeListener(this)
         removeOverlay()
     }
 }
