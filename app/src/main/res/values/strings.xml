@@ -1,5 +1,22 @@
 <resources>
     <string name="app_name">DiGI_R2A_Q</string>
-    <string name="accessibility_service_description">Перехоплює натискання кнопки q/Q на фізичній клавіатурі та емулює введення відповідного символу.</string>
-    <string name="accessibility_service_label">Q/Q Key Input Fixer</string>
+    <string name="accessibility_service_description">Intercepts physical keyboard keys and emulates correct characters for multiple layouts via virtual IME.</string>
+    <string name="accessibility_service_label">R2A Key Interceptor</string>
+
+    <string name="status_loading">Status: Loading...</string>
+    <string name="status_active">Status: ACTIVE (Service running)</string>
+    <string name="status_inactive">Status: INACTIVE</string>
+    <string name="adb_commands_title">ADB commands (tap to copy):</string>
+
+    <string name="setup_wizard_title">Setup Wizard</string>
+    <string name="step_enable_ime">1. Enable Keyboard</string>
+    <string name="step_set_default">2. Set as Default</string>
+
+    <string name="languages_title">Enabled Layouts (Ctrl+Space to cycle):</string>
+    <string name="lang_en">English</string>
+    <string name="lang_es">Spanish</string>
+    <string name="lang_ua">Ukrainian</string>
+    <string name="lang_ru">Russian</string>
+
+    <string name="command_copied">Command copied to clipboard!</string>
 </resources>

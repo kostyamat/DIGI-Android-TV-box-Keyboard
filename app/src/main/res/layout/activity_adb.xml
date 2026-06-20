@@ -10,24 +10,88 @@
         android:id="@+id/statusTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Статус: Завантаження..."
+        android:text="@string/status_loading"
         android:textSize="20sp"
         android:textColor="@android:color/white"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="12dp" />
 
-    <Button
-        android:id="@+id/btnOpenSettings"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/wizardLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Відкрити налаштування"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setup_wizard_title"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnEnableIme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/step_enable_ime" />
+
+        <Button
+            android:id="@+id/btnSelectIme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/step_set_default" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADB команди (натисніть для копіювання):"
+        android:text="@string/languages_title"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:layout_marginBottom="16dp">
+
+        <CheckBox
+            android:id="@+id/cbEn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lang_en"
+            android:textColor="@android:color/white" />
+
+        <CheckBox
+            android:id="@+id/cbEs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lang_es"
+            android:textColor="@android:color/white" />
+
+        <CheckBox
+            android:id="@+id/cbUa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lang_ua"
+            android:textColor="@android:color/white" />
+
+        <CheckBox
+            android:id="@+id/cbRu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lang_ru"
+            android:textColor="@android:color/white" />
+    </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/adb_commands_title"
         android:textColor="#AAAAAA"
         android:textSize="14sp"
         android:layout_marginBottom="8dp" />
@@ -67,23 +131,11 @@
                 android:padding="8dp" />
 
             <Button
-                android:id="@+id/cmdActiveBucket"
+                android:id="@+id/cmdAllowOverlay"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="adb shell am set-standby-bucket com.kostyamat.r2r_q active"
-                android:textAllCaps="false"
-                android:gravity="start|center_vertical"
-                android:textColor="#00E676"
-                android:textSize="12sp"
-                android:padding="8dp" />
-
-            <Button
-                android:id="@+id/cmdAllowRestricted"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow"
+                android:text="adb shell appops set com.kostyamat.r2r_q SYSTEM_ALERT_WINDOW allow"
                 android:textAllCaps="false"
                 android:gravity="start|center_vertical"
                 android:textColor="#00E676"
