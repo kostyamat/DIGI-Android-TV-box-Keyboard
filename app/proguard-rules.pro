@@ -1,21 +1,36 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# 1. Повна заборона на зміну імен у вашому пакеті
+-keep class com.kostyamat.r2r_q.** { *; }
+-keep interface com.kostyamat.r2r_q.** { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# 2. Захист моделей даних (JSON парсинг)
+# Якщо ви використовуєте Gson, Kotlin Serialization або подібне - це критично!
+-keepclassmembers class com.kostyamat.r2r_q.** {
+    @com.google.gson.annotations.SerializedName <fields>;
+    private <fields>;
+    public <fields>;
+}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# 3. Захист системних компонентів Android
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Service
+-keep public class * extends android.view.InputMethodService
+-keep public class * extends android.accessibilityservice.AccessibilityService
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# 4. Захист метаданих для ресурсів
+-keepattributes Signature, *Annotation*, EnclosingMethod, InnerClasses, SourceFile, LineNumberTable
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+# 5. Запобігання видаленню методів, які викликає система
+-keepclassmembers class * extends android.accessibilityservice.AccessibilityService {
+   protected void onServiceConnected();
+   public void onAccessibilityEvent(android.view.accessibility.AccessibilityEvent);
+   public void onInterrupt();
+}
+
+# 6. Збереження логів (якщо ви хочете бачити їх у релізі через logcat)
+-dontoptimize
+-dontobfuscate

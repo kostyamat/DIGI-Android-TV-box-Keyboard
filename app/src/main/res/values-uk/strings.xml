@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">DIGI Keyboard by kostyamat</string>
+    <string name="accessibility_service_description">Перехоплює натискання клавіш фізичної клавіатури та емулює правильні символи для кількох розкладок за допомогою віртуального IME.</string>
+    <string name="accessibility_service_label">DIGI Key Interceptor</string>
+
+    <string name="status_loading">Статус: Завантаження…</string>
+    <string name="status_active">Статус: АКТИВНИЙ</string>
+    <string name="status_inactive">Статус: НЕАКТИВНИЙ</string>
+    <string name="adb_commands_title">Команди ADB (натисніть, щоб скопіювати):</string>
+
+    <string name="setup_wizard_title">Майстер налаштування</string>
+    <string name="step_enable_ime">1. Увімкнути клавіатуру</string>
+    <string name="step_set_default">2. Встановити за замовчуванням</string>
+
+    <string name="languages_title">Увімкнені розкладки (Ctrl+Space для перемикання):</string>
+    <string name="lang_en">Англійська</string>
+    <string name="lang_es">Іспанська</string>
+    <string name="lang_ua">Українська</string>
+    <string name="lang_ru">Російська</string>
+    <string name="lang_ro">Румунська</string>
+
+    <string name="command_copied">Команду скопійовано в буфер обміну!</string>
+    <string name="import_custom_layout">Імпортувати власну розкладку JSON</string>
+    <string name="import_success">Імпортовано: %s</string>
+    <string name="import_failed">Помилка імпорту: %s</string>
+    <string name="ime_off">IME ВИМКНЕНО</string>
+    <string name="no_focus">НЕМАЄ ФОКУСУ</string>
+    <string name="ime_disabled">IME ВИМКНЕНО</string>
+</resources>

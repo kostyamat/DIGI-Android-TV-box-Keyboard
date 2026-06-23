@@ -16,34 +16,62 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="12dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. Run this command via ADB (tap to copy):"
+        android:textColor="#FFD600"
+        android:textSize="14sp"
+        android:layout_marginBottom="4dp" />
+
+    <Button
+        android:id="@+id/cmdGrantSecure"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/adb_grant_secure"
+        android:textAllCaps="false"
+        android:gravity="start"
+        android:textColor="#FFD600"
+        android:textSize="12sp"
+        android:padding="8dp"
+        android:background="#1E1E1E"
+        android:layout_marginBottom="16dp" />
+
     <LinearLayout
         android:id="@+id/wizardLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
         android:layout_marginBottom="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/setup_wizard_title"
+            android:text="2. Configure Keyboard Settings:"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:layout_gravity="center_horizontal"
+            android:textSize="14sp"
             android:layout_marginBottom="8dp"/>
 
         <Button
             android:id="@+id/btnEnableIme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/step_enable_ime" />
+            android:text="@string/step_enable_ime"
+            android:layout_marginBottom="4dp" />
 
         <Button
             android:id="@+id/btnSelectIme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/step_set_default" />
+            android:text="@string/step_set_default"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btnEnableAccessibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/step_enable_accessibility" />
     </LinearLayout>
 
     <TextView
@@ -53,95 +81,24 @@
         android:textColor="@android:color/white"
         android:layout_marginBottom="8dp" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:layout_marginBottom="16dp">
-
-        <CheckBox
-            android:id="@+id/cbEn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lang_en"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/cbEs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lang_es"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/cbUa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lang_ua"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/cbRu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lang_ru"
-            android:textColor="@android:color/white" />
-    </GridLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/adb_commands_title"
-        android:textColor="#AAAAAA"
-        android:textSize="14sp"
-        android:layout_marginBottom="8dp" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
+        android:layout_height="120dp"
+        android:background="#1E1E1E"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
         <LinearLayout
+            android:id="@+id/languagesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/cmdEnableService"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="adb shell settings put secure enabled_accessibility_services com.kostyamat.r2r_q/com.kostyamat.r2r_q.KeyInterceptorService"
-                android:textAllCaps="false"
-                android:gravity="start|center_vertical"
-                android:textColor="#00E676"
-                android:textSize="12sp"
-                android:padding="8dp" />
-
-            <Button
-                android:id="@+id/cmdActivateAccessibility"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="adb shell settings put secure accessibility_enabled 1"
-                android:textAllCaps="false"
-                android:gravity="start|center_vertical"
-                android:textColor="#00E676"
-                android:textSize="12sp"
-                android:padding="8dp" />
-
-            <Button
-                android:id="@+id/cmdAllowOverlay"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="adb shell appops set com.kostyamat.r2r_q SYSTEM_ALERT_WINDOW allow"
-                android:textAllCaps="false"
-                android:gravity="start|center_vertical"
-                android:textColor="#00E676"
-                android:textSize="12sp"
-                android:padding="8dp" />
-
-        </LinearLayout>
+            android:orientation="vertical" />
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnImportLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/import_custom_layout"
+        android:layout_gravity="end" />
+
 </LinearLayout>

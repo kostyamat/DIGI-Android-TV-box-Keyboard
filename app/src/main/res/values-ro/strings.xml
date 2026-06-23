@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">DIGI Keyboard by kostyamat</string>
+    <string name="accessibility_service_description">Interceptează tastele tastaturii fizice și emulează caracterele corecte pentru mai multe aspecte prin intermediul unui IME virtual.</string>
+    <string name="accessibility_service_label">DIGI Key Interceptor</string>
+
+    <string name="status_loading">Stare: Se încarcă…</string>
+    <string name="status_active">Stare: ACTIV</string>
+    <string name="status_inactive">Stare: INACTIV</string>
+    <string name="adb_commands_title">Comenzi ADB (atingeți pentru a copia):</string>
+
+    <string name="setup_wizard_title">Asistent de configurare</string>
+    <string name="step_enable_ime">1. Activați tastatura</string>
+    <string name="step_set_default">2. Setați ca implicită</string>
+
+    <string name="languages_title">Aspecte activate (Ctrl+Space pentru a cicla):</string>
+    <string name="lang_en">Engleză</string>
+    <string name="lang_es">Spaniolă</string>
+    <string name="lang_ua">Ucraineană</string>
+    <string name="lang_ru">Rusă</string>
+    <string name="lang_ro">Română</string>
+
+    <string name="command_copied">Comandă copiată în clipboard!</string>
+    <string name="import_custom_layout">Importați aspect JSON personalizat</string>
+    <string name="import_success">Importat: %s</string>
+    <string name="import_failed">Import eșuat: %s</string>
+    <string name="ime_off">IME OPRIT</string>
+    <string name="no_focus">FĂRĂ FOCUS</string>
+    <string name="ime_disabled">IME DEZACTIVAT</string>
+</resources>
