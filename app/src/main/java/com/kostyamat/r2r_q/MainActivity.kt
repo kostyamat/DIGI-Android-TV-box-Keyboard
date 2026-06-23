@@ -33,7 +33,7 @@ import androidx.core.content.edit
 class MainActivity : AppCompatActivity() {
 
     private lateinit var statusTextView: TextView
-    private lateinit var wizardLayout: LinearLayout
+    private lateinit var setupContainer: LinearLayout
     private lateinit var btnEnableIme: Button
     private lateinit var btnSelectIme: Button
     private lateinit var btnEnableAccessibility: Button
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_adb)
 
         statusTextView = findViewById(R.id.statusTextView)
-        wizardLayout = findViewById(R.id.wizardLayout)
+        setupContainer = findViewById(R.id.setupContainer)
         btnEnableIme = findViewById(R.id.btnEnableIme)
         btnSelectIme = findViewById(R.id.btnSelectIme)
         btnEnableAccessibility = findViewById(R.id.btnEnableAccessibility)
@@ -273,10 +273,16 @@ class MainActivity : AppCompatActivity() {
         statusTextView.text = if (isServiceEnabled) getString(R.string.status_active) else getString(R.string.status_inactive)
         statusTextView.setTextColor(if (isServiceEnabled) Color.GREEN else Color.RED)
 
+        // Динамічне блокування кнопок кроків, якщо вони вже виконані
+        btnEnableIme.isEnabled = !isImeEnabled
+        btnSelectIme.isEnabled = !isImeSelected
+        btnEnableAccessibility.isEnabled = !isServiceEnabled
+
+        // Приховувати весь блок налаштування, якщо все виконано
         if (isServiceEnabled && isImeEnabled && isImeSelected) {
-            wizardLayout.visibility = View.GONE
+            setupContainer.visibility = View.GONE
         } else {
-            wizardLayout.visibility = View.VISIBLE
+            setupContainer.visibility = View.VISIBLE
         }
     }
 
