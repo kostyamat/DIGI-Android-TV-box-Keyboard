@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
             } catch (e: Exception) {
-                Toast.makeText(this, "Не вдалося відкрити налаштування клавіатури", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_open_keyboard_settings_failed), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity() {
             if (hasSecureSettingsPermission()) {
                 autoEnableAccessibility()
             } else {
-                Toast.makeText(this, "Надайте дозвіл WRITE_SECURE_SETTINGS через ADB для кращої активації", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.toast_grant_secure_settings), Toast.LENGTH_LONG).show()
             }
             try {
                 startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -189,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                 try {
                     startActivity(Intent(Settings.ACTION_SETTINGS))
                 } catch (ex: Exception) {
-                    Toast.makeText(this, "Не вдалося відкрити налаштування", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_open_settings_failed), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity() {
                 val newEnabledServices = if (enabledServices.isEmpty()) serviceId else "$enabledServices:$serviceId"
                 Settings.Secure.putString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES, newEnabledServices)
                 Settings.Secure.putString(contentResolver, Settings.Secure.ACCESSIBILITY_ENABLED, "1")
-                Toast.makeText(this, "Службу доступності активовано автоматично!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_accessibility_enabled_automatically), Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Log.e("MainActivity", "Failed to auto-enable accessibility", e)
@@ -232,7 +232,7 @@ class MainActivity : AppCompatActivity() {
 
             // Set as Default
             Settings.Secure.putString(contentResolver, Settings.Secure.DEFAULT_INPUT_METHOD, imeId)
-            Toast.makeText(this, "Клавіатуру активовано та встановлено за замовчуванням!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_ime_enabled_automatically), Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Log.e("MainActivity", "Failed to auto-enable IME", e)
         }
@@ -245,9 +245,6 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.cmdGrantSecure)?.setOnClickListener(clickListener)
         findViewById<Button>(R.id.cmdRestrictedSettings)?.setOnClickListener(clickListener)
-        findViewById<Button>(R.id.cmdEnableService)?.setOnClickListener(clickListener)
-        findViewById<Button>(R.id.cmdActivateAcc)?.setOnClickListener(clickListener)
-        findViewById<Button>(R.id.cmdAllowOverlay)?.setOnClickListener(clickListener)
     }
 
     private fun copyToClipboard(text: String) {

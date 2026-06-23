@@ -120,74 +120,7 @@
                 android:textSize="11sp"
                 android:padding="8dp"
                 android:background="#1E1E1E"
-                android:layout_marginBottom="12dp" />
-
-            <!-- ADB 3 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_enable_service_desc"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp" />
-            <Button
-                android:id="@+id/cmdEnableService"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_enable_service"
-                android:textAllCaps="false"
-                android:gravity="start"
-                android:textColor="#FFD600"
-                android:textSize="11sp"
-                android:padding="8dp"
-                android:background="#1E1E1E"
-                android:layout_marginBottom="12dp" />
-
-            <!-- ADB 4 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_activate_acc_desc"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp" />
-            <Button
-                android:id="@+id/cmdActivateAcc"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_activate_acc"
-                android:textAllCaps="false"
-                android:gravity="start"
-                android:textColor="#FFD600"
-                android:textSize="11sp"
-                android:padding="8dp"
-                android:background="#1E1E1E"
-                android:layout_marginBottom="12dp" />
-
-            <!-- ADB 5 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_allow_overlay_desc"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp" />
-            <Button
-                android:id="@+id/cmdAllowOverlay"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_allow_overlay"
-                android:textAllCaps="false"
-                android:gravity="start"
-                android:textColor="#FFD600"
-                android:textSize="11sp"
-                android:padding="8dp"
-                android:background="#1E1E1E"
-                android:layout_marginBottom="12dp" />
-        </LinearLayout>
+                android:layout_marginBottom="12dp" />        </LinearLayout>
 
         <!-- Мови (завжди залишаються) -->
         <TextView

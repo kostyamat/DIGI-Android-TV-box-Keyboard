@@ -29,18 +29,15 @@
     <string name="no_focus">НЕМАЄ ФОКУСУ</string>
     <string name="ime_disabled">IME ВИМКНЕНО</string>
 
-    <string name="adb_grant_secure_desc">1. Надати дозвіл WRITE_SECURE_SETTINGS (через ADB):</string>
+    <string name="toast_open_keyboard_settings_failed">Не вдалося відкрити налаштування клавіатури</string>
+    <string name="toast_open_settings_failed">Не вдалося відкрити налаштування</string>
+    <string name="toast_grant_secure_settings">Надайте дозвіл WRITE_SECURE_SETTINGS через ADB для автоматичної активації</string>
+    <string name="toast_accessibility_enabled_automatically">Службу доступності активовано автоматично!</string>
+    <string name="toast_ime_enabled_automatically">Клавіатуру активовано та встановлено за замовчуванням!</string>
+
+    <string name="adb_grant_secure_desc">1. Надати дозвіл WRITE_SECURE_SETTINGS (Необхідно для авто-активації):</string>
     <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
 
-    <string name="adb_restricted_settings_desc">2. Дозволити обмежені налаштування (для Android 13+):</string>
+    <string name="adb_restricted_settings_desc">2. Дозволити обмежені налаштування (Необхідно, якщо крок 3 сірий/заблокований):</string>
     <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
-
-    <string name="adb_enable_service_desc">3. Увімкнути службу доступності через ADB:</string>
-    <string name="adb_enable_service">adb shell settings put secure enabled_accessibility_services com.kostyamat.r2r_q/com.kostyamat.r2r_q.KeyInterceptorService</string>
-
-    <string name="adb_activate_acc_desc">4. Активувати доступність через ADB:</string>
-    <string name="adb_activate_acc">adb shell settings put secure accessibility_enabled 1</string>
-
-    <string name="adb_allow_overlay_desc">5. Дозволити відображення поверх інших вікон:</string>
-    <string name="adb_allow_overlay">adb shell appops set com.kostyamat.r2r_q SYSTEM_ALERT_WINDOW allow</string>
 </resources>
