@@ -20,6 +20,8 @@
     <string name="lang_ua">Ucraniano</string>
     <string name="lang_ru">Ruso</string>
     <string name="lang_ro">Rumano</string>
+    <string name="lang_fr">Francés</string>
+    <string name="lang_it">Italiano</string>
 
     <string name="command_copied">¡Comando copiado al portapapeles!</string>
     <string name="import_custom_layout">Importar diseño JSON personalizado</string>
@@ -40,4 +42,5 @@
 
     <string name="adb_restricted_settings_desc">2. Permitir configuraciones restringidas (Requerido si el botón 3 está deshabilitado/gris):</string>
     <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
+    <string name="toast_secure_settings_granted">¡Permiso WRITE_SECURE_SETTINGS concedido correctamente!</string>
 </resources>

@@ -20,6 +20,8 @@
     <string name="lang_ua">Ucraineană</string>
     <string name="lang_ru">Rusă</string>
     <string name="lang_ro">Română</string>
+    <string name="lang_fr">Franceză</string>
+    <string name="lang_it">Italiană</string>
 
     <string name="command_copied">Comandă copiată în clipboard!</string>
     <string name="import_custom_layout">Importați aspect JSON personalizat</string>
@@ -40,4 +42,5 @@
 
     <string name="adb_restricted_settings_desc">2. Permiteți setările restricționate (Necesar dacă butonul 3 este dezactivat/gri):</string>
     <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
+    <string name="toast_secure_settings_granted">Permisiunea WRITE_SECURE_SETTINGS a fost acordată cu succes!</string>
 </resources>

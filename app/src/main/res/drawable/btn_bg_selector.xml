@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Деактивована кнопка (Disabled) -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#2A2A2A" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    
+    <!-- Активна кнопка у фокусі (Focused & Enabled) -> Синій -->
+    <item android:state_focused="true" android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#0D47A1" />
+            <corners android:radius="8dp" />
+            <stroke android:width="2dp" android:color="#FFD600" />
+        </shape>
+    </item>
+    
+    <!-- Активна кнопка без фокусу (Enabled) -> Блакитний -->
+    <item android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#03A9F4" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>

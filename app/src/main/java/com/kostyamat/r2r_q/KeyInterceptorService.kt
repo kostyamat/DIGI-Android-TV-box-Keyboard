@@ -60,14 +60,18 @@ class KeyInterceptorService : AccessibilityService(), SharedPreferences.OnShared
             val assetManager = this.assets
             assetManager.list("layouts")?.forEach { fileName ->
                 if (fileName.endsWith(".json")) {
-                    assetManager.open("layouts/$fileName").use { inputStream ->
-                        val jsonString = inputStream.bufferedReader().use { it.readText() }
-                        availableLayouts.add(LayoutModel.fromJson(jsonString))
+                    try {
+                        assetManager.open("layouts/$fileName").use { inputStream ->
+                            val jsonString = inputStream.bufferedReader().use { it.readText() }
+                            availableLayouts.add(LayoutModel.fromJson(jsonString))
+                        }
+                    } catch (e: Exception) {
+                        Log.e("KeyInterceptor", "Error loading asset layout: $fileName", e)
                     }
                 }
             }
         } catch (e: Exception) {
-            Log.e("KeyInterceptor", "Error loading layouts from assets", e)
+            Log.e("KeyInterceptor", "Error listing layouts from assets", e)
         }
 
         val externalDir = File(storageContext.filesDir, "layouts")

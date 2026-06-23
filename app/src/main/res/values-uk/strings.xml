@@ -20,6 +20,8 @@
     <string name="lang_ua">Українська</string>
     <string name="lang_ru">Російська</string>
     <string name="lang_ro">Румунська</string>
+    <string name="lang_fr">Французька</string>
+    <string name="lang_it">Італійська</string>
 
     <string name="command_copied">Команду скопійовано в буфер обміну!</string>
     <string name="import_custom_layout">Імпортувати власну розкладку JSON</string>
@@ -40,4 +42,5 @@
 
     <string name="adb_restricted_settings_desc">2. Дозволити обмежені налаштування (Необхідно, якщо крок 3 сірий/заблокований):</string>
     <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
+    <string name="toast_secure_settings_granted">Дозвіл WRITE_SECURE_SETTINGS успішно надано!</string>
 </resources>

@@ -81,6 +81,11 @@ class MainActivity : AppCompatActivity() {
         setupAdbButtons()
         refreshLanguagesList()
 
+        if (hasSecureSettingsPermission()) {
+            val prefs = storageContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
+            prefs.edit().putBoolean("secure_settings_granted", true).apply()
+        }
+
         btnImportLayout.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = "application/json"
@@ -99,15 +104,19 @@ class MainActivity : AppCompatActivity() {
             val assetManager = this.assets
             assetManager.list("layouts")?.forEach { fileName ->
                 if (fileName.endsWith(".json")) {
-                    assetManager.open("layouts/$fileName").use { inputStream ->
-                        val jsonString = inputStream.bufferedReader().use { it.readText() }
-                        val layout = LayoutModel.fromJson(jsonString)
-                        layouts.add(layout.id to getLocalizedName(layout))
+                    try {
+                        assetManager.open("layouts/$fileName").use { inputStream ->
+                            val jsonString = inputStream.bufferedReader().use { it.readText() }
+                            val layout = LayoutModel.fromJson(jsonString)
+                            layouts.add(layout.id to getLocalizedName(layout))
+                        }
+                    } catch (e: Exception) {
+                        Log.e("MainActivity", "Error loading asset layout: $fileName", e)
                     }
                 }
             }
         } catch (e: Exception) {
-            Log.e("MainActivity", "Error loading assets", e)
+            Log.e("MainActivity", "Error listing assets", e)
         }
 
         val externalDir = File(storageContext.filesDir, "layouts")
@@ -164,6 +173,8 @@ class MainActivity : AppCompatActivity() {
         btnEnableIme.setOnClickListener {
             if (hasSecureSettingsPermission()) {
                 autoEnableIME()
+            } else {
+                Toast.makeText(this, getString(R.string.toast_grant_secure_settings), Toast.LENGTH_LONG).show()
             }
             try {
                 startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
@@ -271,6 +282,25 @@ class MainActivity : AppCompatActivity() {
 
         statusTextView.text = if (isServiceEnabled) getString(R.string.status_active) else getString(R.string.status_inactive)
         statusTextView.setTextColor(if (isServiceEnabled) Color.GREEN else Color.RED)
+
+        if (hasSecureSettingsPermission()) {
+            val prefs = storageContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
+            if (!prefs.getBoolean("secure_settings_granted", false)) {
+                prefs.edit().putBoolean("secure_settings_granted", true).apply()
+                Toast.makeText(this, getString(R.string.toast_secure_settings_granted), Toast.LENGTH_LONG).show()
+            }
+            if (!isImeEnabled) {
+                autoEnableIME()
+            }
+            if (!isServiceEnabled) {
+                autoEnableAccessibility()
+            }
+        } else {
+            val prefs = storageContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
+            if (prefs.getBoolean("secure_settings_granted", false)) {
+                prefs.edit().putBoolean("secure_settings_granted", false).apply()
+            }
+        }
 
         // Динамічне блокування кнопок кроків, якщо вони вже виконані
         btnEnableIme.isEnabled = !isImeEnabled

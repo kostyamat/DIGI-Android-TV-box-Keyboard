@@ -33,3 +33,6 @@ captures/
 # OS-specific
 .DS_Store
 Thumbs.db
+
+# Agents context and skills
+.agents/

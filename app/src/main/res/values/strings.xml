@@ -20,6 +20,8 @@
     <string name="lang_ua">Ukrainian</string>
     <string name="lang_ru">Russian</string>
     <string name="lang_ro">Romanian</string>
+    <string name="lang_fr">French</string>
+    <string name="lang_it">Italian</string>
 
     <string name="command_copied">Command copied to clipboard!</string>
     <string name="import_custom_layout">Import Custom JSON Layout</string>
@@ -40,4 +42,5 @@
     
     <string name="adb_restricted_settings_desc">2. Allow Restricted Settings (Required if button 3 is disabled/greyed out):</string>
     <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
+    <string name="toast_secure_settings_granted">WRITE_SECURE_SETTINGS permission granted successfully!</string>
 </resources>

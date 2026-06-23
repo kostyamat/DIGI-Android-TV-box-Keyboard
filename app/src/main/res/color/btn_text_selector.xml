@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Деактивований стан -> Темно-сірий текст -->
+    <item android:state_enabled="false" android:color="#777777" />
+    
+    <!-- Активний у фокусі -> Жовтий текст -->
+    <item android:state_focused="true" android:state_enabled="true" android:color="#FFD600" />
+    
+    <!-- Активний без фокусу -> Білий текст -->
+    <item android:state_enabled="true" android:color="#FFFFFF" />
+</selector>
