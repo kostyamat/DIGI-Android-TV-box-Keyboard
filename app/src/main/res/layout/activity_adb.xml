@@ -1,104 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
+    android:fillViewport="true"
     android:background="#121212">
 
-    <TextView
-        android:id="@+id/statusTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/status_loading"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1. Run this command via ADB (tap to copy):"
-        android:textColor="#FFD600"
-        android:textSize="14sp"
-        android:layout_marginBottom="4dp" />
-
-    <Button
-        android:id="@+id/cmdGrantSecure"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/adb_grant_secure"
-        android:textAllCaps="false"
-        android:gravity="start"
-        android:textColor="#FFD600"
-        android:textSize="12sp"
-        android:padding="8dp"
-        android:background="#1E1E1E"
-        android:layout_marginBottom="16dp" />
-
     <LinearLayout
-        android:id="@+id/wizardLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="16dp">
+        android:padding="24dp">
 
+        <!-- Статус -->
+        <TextView
+            android:id="@+id/statusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_loading"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Майстер налаштування (Wizard) -->
+        <LinearLayout
+            android:id="@+id/wizardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setup_wizard_title"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnEnableIme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step_enable_ime"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnSelectIme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step_set_default"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnEnableAccessibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/step_enable_accessibility"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <!-- Мови -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2. Configure Keyboard Settings:"
+            android:text="@string/languages_title"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/btnEnableIme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/step_enable_ime"
-            android:layout_marginBottom="4dp" />
-
-        <Button
-            android:id="@+id/btnSelectIme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/step_set_default"
-            android:layout_marginBottom="4dp" />
-
-        <Button
-            android:id="@+id/btnEnableAccessibility"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/step_enable_accessibility" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/languages_title"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="8dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="#1E1E1E"
-        android:padding="8dp"
-        android:layout_marginBottom="8dp">
         <LinearLayout
             android:id="@+id/languagesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:orientation="vertical"
+            android:background="#1E1E1E"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/btnImportLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/import_custom_layout"
-        android:layout_gravity="end" />
+        <Button
+            android:id="@+id/btnImportLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/import_custom_layout"
+            android:layout_gravity="end"
+            android:layout_marginBottom="24dp" />
 
-</LinearLayout>
+        <!-- Команди ADB -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_commands_title"
+            android:textColor="#FFD600"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ADB 1 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_grant_secure_desc"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp" />
+        <Button
+            android:id="@+id/cmdGrantSecure"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_grant_secure"
+            android:textAllCaps="false"
+            android:gravity="start"
+            android:textColor="#FFD600"
+            android:textSize="11sp"
+            android:padding="8dp"
+            android:background="#1E1E1E"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ADB 2 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_restricted_settings_desc"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp" />
+        <Button
+            android:id="@+id/cmdRestrictedSettings"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_restricted_settings"
+            android:textAllCaps="false"
+            android:gravity="start"
+            android:textColor="#FFD600"
+            android:textSize="11sp"
+            android:padding="8dp"
+            android:background="#1E1E1E"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ADB 3 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_enable_service_desc"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp" />
+        <Button
+            android:id="@+id/cmdEnableService"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_enable_service"
+            android:textAllCaps="false"
+            android:gravity="start"
+            android:textColor="#FFD600"
+            android:textSize="11sp"
+            android:padding="8dp"
+            android:background="#1E1E1E"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ADB 4 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_activate_acc_desc"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp" />
+        <Button
+            android:id="@+id/cmdActivateAcc"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_activate_acc"
+            android:textAllCaps="false"
+            android:gravity="start"
+            android:textColor="#FFD600"
+            android:textSize="11sp"
+            android:padding="8dp"
+            android:background="#1E1E1E"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ADB 5 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_allow_overlay_desc"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp" />
+        <Button
+            android:id="@+id/cmdAllowOverlay"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/adb_allow_overlay"
+            android:textAllCaps="false"
+            android:gravity="start"
+            android:textColor="#FFD600"
+            android:textSize="11sp"
+            android:padding="8dp"
+            android:background="#1E1E1E"
+            android:layout_marginBottom="12dp" />
+
+    </LinearLayout>
+</ScrollView>

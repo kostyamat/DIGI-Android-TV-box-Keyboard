@@ -12,7 +12,7 @@
     <string name="step_enable_ime">1. Enable Keyboard</string>
     <string name="step_set_default">2. Set as Default</string>
     <string name="step_enable_accessibility">3. Enable Accessibility Service</string>
-    <string name="keyboard_setup_instruction">2. Enable the keyboard in settings and set it as default:</string>
+    <string name="keyboard_setup_instruction">Enable the keyboard in settings and set it as default:</string>
 
     <string name="languages_title">Enabled Layouts (Ctrl+Space to cycle):</string>
     <string name="lang_en">English</string>
@@ -29,9 +29,18 @@
     <string name="no_focus">NO FOCUS</string>
     <string name="ime_disabled">IME DISABLED</string>
 
+    <string name="adb_grant_secure_desc">1. Grant WRITE_SECURE_SETTINGS permission:</string>
     <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
+    
+    <string name="adb_restricted_settings_desc">2. Allow Restricted Settings (Android 13+):</string>
     <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
+    
+    <string name="adb_enable_service_desc">3. Enable Accessibility Service via ADB:</string>
     <string name="adb_enable_service">adb shell settings put secure enabled_accessibility_services com.kostyamat.r2r_q/com.kostyamat.r2r_q.KeyInterceptorService</string>
+    
+    <string name="adb_activate_acc_desc">4. Activate Accessibility via ADB:</string>
     <string name="adb_activate_acc">adb shell settings put secure accessibility_enabled 1</string>
+    
+    <string name="adb_allow_overlay_desc">5. Allow Overlay (Draw over other apps):</string>
     <string name="adb_allow_overlay">adb shell appops set com.kostyamat.r2r_q SYSTEM_ALERT_WINDOW allow</string>
 </resources>

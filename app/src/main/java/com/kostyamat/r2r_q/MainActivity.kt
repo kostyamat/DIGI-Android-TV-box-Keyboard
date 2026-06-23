@@ -162,18 +162,41 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupWizardButtons() {
         btnEnableIme.setOnClickListener {
-            startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
+            if (hasSecureSettingsPermission()) {
+                autoEnableIME()
+            }
+            try {
+                startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
+            } catch (e: Exception) {
+                Toast.makeText(this, "Не вдалося відкрити налаштування клавіатури", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnSelectIme.setOnClickListener {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showInputMethodPicker()
+        }
+
+        btnEnableAccessibility.setOnClickListener {
+            if (hasSecureSettingsPermission()) {
+                autoEnableAccessibility()
+            } else {
+                Toast.makeText(this, "Надайте дозвіл WRITE_SECURE_SETTINGS через ADB для кращої активації", Toast.LENGTH_LONG).show()
+            }
+            try {
+                startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            } catch (e: Exception) {
+                try {
+                    startActivity(Intent(Settings.ACTION_SETTINGS))
+                } catch (ex: Exception) {
+                    Toast.makeText(this, "Не вдалося відкрити налаштування", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
     private fun hasSecureSettingsPermission(): Boolean {
         return ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun autoEnableEverything() {
-        autoEnableAccessibility()
-        autoEnableIME()
-        updateStatus()
     }
 
     private fun autoEnableAccessibility() {
@@ -186,11 +209,10 @@ class MainActivity : AppCompatActivity() {
                 val newEnabledServices = if (enabledServices.isEmpty()) serviceId else "$enabledServices:$serviceId"
                 Settings.Secure.putString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES, newEnabledServices)
                 Settings.Secure.putString(contentResolver, Settings.Secure.ACCESSIBILITY_ENABLED, "1")
-                Toast.makeText(this, "Accessibility Service enabled automatically!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Службу доступності активовано автоматично!", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Log.e("MainActivity", "Failed to auto-enable accessibility", e)
-            startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
     }
 
@@ -208,18 +230,22 @@ class MainActivity : AppCompatActivity() {
 
             // Set as Default
             Settings.Secure.putString(contentResolver, Settings.Secure.DEFAULT_INPUT_METHOD, imeId)
-            Toast.makeText(this, "IME enabled and set as default!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Клавіатуру активовано та встановлено за замовчуванням!", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Log.e("MainActivity", "Failed to auto-enable IME", e)
         }
     }
 
     private fun setupAdbButtons() {
-        findViewById<Button>(R.id.cmdGrantSecure)?.setOnClickListener { view ->
+        val clickListener = View.OnClickListener { view ->
             val command = (view as Button).text.toString()
             copyToClipboard(command)
-            Toast.makeText(this, getString(R.string.command_copied), Toast.LENGTH_SHORT).show()
         }
+        findViewById<Button>(R.id.cmdGrantSecure)?.setOnClickListener(clickListener)
+        findViewById<Button>(R.id.cmdRestrictedSettings)?.setOnClickListener(clickListener)
+        findViewById<Button>(R.id.cmdEnableService)?.setOnClickListener(clickListener)
+        findViewById<Button>(R.id.cmdActivateAcc)?.setOnClickListener(clickListener)
+        findViewById<Button>(R.id.cmdAllowOverlay)?.setOnClickListener(clickListener)
     }
 
     private fun copyToClipboard(text: String) {
@@ -230,9 +256,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (hasSecureSettingsPermission()) {
-            autoEnableEverything()
-        }
         updateStatus()
         handler.post(checkStatusRunnable)
     }
