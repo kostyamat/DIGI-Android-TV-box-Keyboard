@@ -11,6 +11,7 @@
     <string name="setup_wizard_title">Майстер налаштування</string>
     <string name="step_enable_ime">1. Увімкнути клавіатуру</string>
     <string name="step_set_default">2. Встановити за замовчуванням</string>
+    <string name="keyboard_setup_instruction">2. Активуйте клавіатуру в налаштуваннях та встановіть її за замовчуванням:</string>
 
     <string name="languages_title">Увімкнені розкладки (Ctrl+Space для перемикання):</string>
     <string name="lang_en">Англійська</string>

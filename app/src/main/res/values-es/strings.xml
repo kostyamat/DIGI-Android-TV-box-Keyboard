@@ -11,6 +11,7 @@
     <string name="setup_wizard_title">Asistente de configuración</string>
     <string name="step_enable_ime">1. Habilitar teclado</string>
     <string name="step_set_default">2. Establecer como predeterminado</string>
+    <string name="keyboard_setup_instruction">2. Active el teclado en la configuración y configúrelo como predeterminado:</string>
 
     <string name="languages_title">Diseños habilitados (Ctrl+Espacio para ciclar):</string>
     <string name="lang_en">Inglés</string>

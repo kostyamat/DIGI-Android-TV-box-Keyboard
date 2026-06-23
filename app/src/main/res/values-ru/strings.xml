@@ -11,6 +11,7 @@
     <string name="setup_wizard_title">Мастер настройки</string>
     <string name="step_enable_ime">1. Включить клавиатуру</string>
     <string name="step_set_default">2. Установить по умолчанию</string>
+    <string name="keyboard_setup_instruction">2. Активируйте клавиатуру в настройках и установите её по умолчанию:</string>
 
     <string name="languages_title">Включенные раскладки (Ctrl+Space для переключения):</string>
     <string name="lang_en">Английский</string>

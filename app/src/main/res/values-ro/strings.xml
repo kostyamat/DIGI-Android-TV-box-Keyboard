@@ -11,6 +11,7 @@
     <string name="setup_wizard_title">Asistent de configurare</string>
     <string name="step_enable_ime">1. Activați tastatura</string>
     <string name="step_set_default">2. Setați ca implicită</string>
+    <string name="keyboard_setup_instruction">2. Activați tastatura în setări și setați-o ca implicită:</string>
 
     <string name="languages_title">Aspecte activate (Ctrl+Space pentru a cicla):</string>
     <string name="lang_en">Engleză</string>
