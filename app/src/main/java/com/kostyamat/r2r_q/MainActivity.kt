@@ -220,11 +220,13 @@ class MainActivity : AppCompatActivity() {
         try {
             val imeId = ComponentName(this, KeyInterceptorIME::class.java).flattenToString()
             val contentResolver = contentResolver
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-            // Enable IME
-            val enabledImes = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_INPUT_METHODS) ?: ""
-            if (!enabledImes.contains(imeId)) {
-                val newEnabled = if (enabledImes.isEmpty()) imeId else "$enabledImes:$imeId"
+            // Отримуємо список увімкнених IME через безпечний API
+            val enabledImeIds = imm.enabledInputMethodList.map { it.id }
+
+            if (!enabledImeIds.contains(imeId)) {
+                val newEnabled = (enabledImeIds + imeId).joinToString(":")
                 Settings.Secure.putString(contentResolver, Settings.Secure.ENABLED_INPUT_METHODS, newEnabled)
             }
 
