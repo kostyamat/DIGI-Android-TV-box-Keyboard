@@ -11,7 +11,8 @@
     <string name="setup_wizard_title">Asistent de configurare</string>
     <string name="step_enable_ime">1. Activați tastatura</string>
     <string name="step_set_default">2. Setați ca implicită</string>
-    <string name="keyboard_setup_instruction">2. Activați tastatura în setări și setați-o ca implicită:</string>
+    <string name="step_enable_accessibility">3. Activați serviciul de accesibilitate</string>
+    <string name="keyboard_setup_instruction">Activați tastatura în setări și setați-o ca implicită:</string>
 
     <string name="languages_title">Aspecte activate (Ctrl+Space pentru a cicla):</string>
     <string name="lang_en">Engleză</string>
@@ -27,4 +28,16 @@
     <string name="ime_off">IME OPRIT</string>
     <string name="no_focus">FĂRĂ FOCUS</string>
     <string name="ime_disabled">IME DEZACTIVAT</string>
+
+    <string name="toast_open_keyboard_settings_failed">Nu s-au putut deschide setările tastaturii</string>
+    <string name="toast_open_settings_failed">Nu s-au putut deschide setările</string>
+    <string name="toast_grant_secure_settings">Acordați permisiunea WRITE_SECURE_SETTINGS prin ADB pentru activarea automată</string>
+    <string name="toast_accessibility_enabled_automatically">Serviciul de accesibilitate a fost activat automat!</string>
+    <string name="toast_ime_enabled_automatically">Tastatura a fost activată și setată ca implicită!</string>
+
+    <string name="adb_grant_secure_desc">1. Acordați permisiunea WRITE_SECURE_SETTINGS (Necesară pentru activarea automată):</string>
+    <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
+
+    <string name="adb_restricted_settings_desc">2. Permiteți setările restricționate (Necesar dacă butonul 3 este dezactivat/gri):</string>
+    <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
 </resources>

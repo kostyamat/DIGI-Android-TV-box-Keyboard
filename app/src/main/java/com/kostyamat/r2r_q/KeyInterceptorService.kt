@@ -144,7 +144,15 @@ class KeyInterceptorService : AccessibilityService(), SharedPreferences.OnShared
 
                 if (event.action == KeyEvent.ACTION_DOWN) {
                     val isShifted = event.isShiftPressed xor event.isCapsLockOn
-                    val charToInsert = if (isShifted) translation.second else translation.first
+                    val charToInsert = if (isAltGr) {
+                        if (isShifted) {
+                            translation.altGrShift ?: translation.altGr ?: translation.shift
+                        } else {
+                            translation.altGr ?: translation.normal
+                        }
+                    } else {
+                        if (isShifted) translation.shift else translation.normal
+                    }
                     injectChar(charToInsert)
                 }
                 return true

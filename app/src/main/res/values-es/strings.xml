@@ -11,7 +11,8 @@
     <string name="setup_wizard_title">Asistente de configuración</string>
     <string name="step_enable_ime">1. Habilitar teclado</string>
     <string name="step_set_default">2. Establecer como predeterminado</string>
-    <string name="keyboard_setup_instruction">2. Active el teclado en la configuración y configúrelo como predeterminado:</string>
+    <string name="step_enable_accessibility">3. Habilitar servicio de accesibilidad</string>
+    <string name="keyboard_setup_instruction">Active el teclado en la configuración y configúrelo como predeterminado:</string>
 
     <string name="languages_title">Diseños habilitados (Ctrl+Espacio para ciclar):</string>
     <string name="lang_en">Inglés</string>
@@ -27,4 +28,16 @@
     <string name="ime_off">IME APAGADO</string>
     <string name="no_focus">SIN FOCO</string>
     <string name="ime_disabled">IME DESHABILITADO</string>
+
+    <string name="toast_open_keyboard_settings_failed">No se pudo abrir la configuración del teclado</string>
+    <string name="toast_open_settings_failed">No se pudo abrir la configuración</string>
+    <string name="toast_grant_secure_settings">Otorgue el permiso WRITE_SECURE_SETTINGS a través de ADB para la activación automática</string>
+    <string name="toast_accessibility_enabled_automatically">¡Servicio de accesibilidad activado automáticamente!</string>
+    <string name="toast_ime_enabled_automatically">¡Teclado activado y establecido como predeterminado!</string>
+
+    <string name="adb_grant_secure_desc">1. Otorgar permiso WRITE_SECURE_SETTINGS (Requerido para activación automática):</string>
+    <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
+
+    <string name="adb_restricted_settings_desc">2. Permitir configuraciones restringidas (Requerido si el botón 3 está deshabilitado/gris):</string>
+    <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
 </resources>

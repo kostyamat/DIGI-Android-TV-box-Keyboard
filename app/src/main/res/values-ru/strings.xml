@@ -11,7 +11,8 @@
     <string name="setup_wizard_title">Мастер настройки</string>
     <string name="step_enable_ime">1. Включить клавиатуру</string>
     <string name="step_set_default">2. Установить по умолчанию</string>
-    <string name="keyboard_setup_instruction">2. Активируйте клавиатуру в настройках и установите её по умолчанию:</string>
+    <string name="step_enable_accessibility">3. Включить службу специальных возможностей</string>
+    <string name="keyboard_setup_instruction">Активируйте клавиатуру в настройках и установите её по умолчанию:</string>
 
     <string name="languages_title">Включенные раскладки (Ctrl+Space для переключения):</string>
     <string name="lang_en">Английский</string>
@@ -27,4 +28,16 @@
     <string name="ime_off">IME ВЫКЛ</string>
     <string name="no_focus">НЕТ ФОКУСА</string>
     <string name="ime_disabled">IME ВЫКЛЮЧЕН</string>
+
+    <string name="toast_open_keyboard_settings_failed">Не удалось открыть настройки клавиатуры</string>
+    <string name="toast_open_settings_failed">Не удалось открыть настройки</string>
+    <string name="toast_grant_secure_settings">Предоставьте разрешение WRITE_SECURE_SETTINGS через ADB для автоматической активации</string>
+    <string name="toast_accessibility_enabled_automatically">Служба специальных возможностей активирована автоматически!</string>
+    <string name="toast_ime_enabled_automatically">Клавиатура активирована и установлена по умолчанию!</string>
+
+    <string name="adb_grant_secure_desc">1. Предоставить разрешение WRITE_SECURE_SETTINGS (Необходимо для авто-активации):</string>
+    <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
+
+    <string name="adb_restricted_settings_desc">2. Разрешить ограниченные настройки (Необходимо, если шаг 3 серый/заблокирован):</string>
+    <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
 </resources>
