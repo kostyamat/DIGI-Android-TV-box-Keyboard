@@ -8,11 +8,7 @@
     <string name="status_inactive">Статус: НЕАКТИВЕН</string>
     <string name="adb_commands_title">Команды ADB (нажмите, чтобы скопировать):</string>
 
-    <string name="setup_wizard_title">Мастер настройки</string>
-    <string name="step_enable_ime">1. Включить клавиатуру</string>
-    <string name="step_set_default">2. Установить по умолчанию</string>
-    <string name="step_enable_accessibility">3. Включить службу специальных возможностей</string>
-    <string name="keyboard_setup_instruction">Активируйте клавиатуру в настройках и установите её по умолчанию:</string>
+
 
     <string name="languages_title">Включенные раскладки (Ctrl+Space для переключения):</string>
     <string name="lang_en">Английский</string>
@@ -37,10 +33,52 @@
     <string name="toast_accessibility_enabled_automatically">Служба специальных возможностей активирована автоматически!</string>
     <string name="toast_ime_enabled_automatically">Клавиатура активирована и установлена по умолчанию!</string>
 
-    <string name="adb_grant_secure_desc">1. Предоставить разрешение WRITE_SECURE_SETTINGS (Необходимо для авто-активации):</string>
-    <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_auto_setup_title">Локальная автоматизация ADB</string>
+    <string name="adb_auto_setup_desc">Автоматизируйте настройку без ПК! Сначала включите Отладку по USB/Беспроводную.</string>
+    <string name="btn_step_1_dev_options">Шаг 1: Открыть меню разработчика</string>
+    <string name="btn_step_2_auto_grant">Шаг 2: Выдать разрешения автоматически</string>
+    <string name="toast_secure_settings_granted">Разрешения успешно выданы!</string>
+    <string name="toast_adb_failed">Не удалось подключиться к локальному ADB. Убедитесь, что Отладка включена.</string>
+    <string name="dialog_adb_rsa_title">Важно</string>
+    <string name="dialog_adb_rsa_msg">Появится системный запрос "Разрешить отладку с этого компьютера". Вы ДОЛЖНЫ поставить галочку "Всегда разрешать" и нажать "ОК", чтобы завершить настройку.</string>
 
-    <string name="adb_restricted_settings_desc">2. Разрешить ограниченные настройки (Необходимо, если шаг 3 серый/заблокирован):</string>
-    <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
-    <string name="toast_secure_settings_granted">Разрешение WRITE_SECURE_SETTINGS успешно предоставлено!</string>
+    <string name="smart_switcher_title">Умное переключение клавиатур</string>
+    <string name="smart_switcher_none">Ничего (Выключено)</string>
+    <string name="smart_switcher_desc">Выберите экранную клавиатуру, на которую переключаться, если физическая клавиатура не подключена:</string>
+    <string name="toast_ime_activated_short">Активировано %1$s</string>
+    <string name="toast_ime_activated_long">Активировано %1$s\nПереключение раскладок - CTRL+Space или WIN</string>
+
+    <string name="q_action_title">Действие клавиши DIGI Online</string>
+    <string name="q_action_desc">Что делать при нажатии кнопки DIGI Online на пульте, когда клавиатура отключена:</string>
+    <string name="q_action_default">По умолчанию</string>
+    <string name="q_action_back">Назад (Back)</string>
+    <string name="q_action_home">Домой (Home)</string>
+    <string name="q_action_play_pause">Воспроизведение/Пауза (Play/Pause)</string>
+    <string name="q_action_recents">Недавние приложения (Recent Apps)</string>
+    <string name="q_action_settings">Настройки (Settings)</string>
+    <string name="q_action_custom_intent">Ввести кастомный Intent...</string>
+    <string name="q_action_intent_dialog_title">Кастомный Intent</string>
+    <string name="q_action_intent_dialog_msg">Введите Deep Link или Intent URI</string>
+    <string name="q_action_custom_intent_hint">Введите Intent URI или Deep Link...</string>
+    <string name="dialog_delete_layout_title">Удалить раскладку</string>
+    <string name="dialog_delete_layout_msg">Вы уверены, что хотите удалить \'%1$s\'?</string>
+    <string name="btn_delete">Удалить</string>
+    <string name="dialog_layout_exists_title">Раскладка существует</string>
+    <string name="dialog_layout_exists_msg">Раскладка с ID \'%1$s\' уже существует.</string>
+    <string name="btn_overwrite">Перезаписать</string>
+    <string name="btn_save_as_new">Сохранить как новую</string>
+    <string name="hint_new_layout_id">Новый ID</string>
+    <string name="hint_new_layout_name">Новое имя</string>
+
+    <string name="custom_remaps_title">Кастомные кнопки пульта</string>
+    <string name="custom_remaps_desc">Переназначайте дополнительные кнопки вашего пульта (например, Netflix) для запуска ваших приложений. Не влияет на физическую клавиатуру.</string>
+    <string name="btn_add_remap">Добавить кнопку</string>
+    <string name="dialog_catch_key_title">Нажмите кнопку</string>
+    <string name="dialog_catch_key_msg">Нажмите кнопку на пульте, которую вы хотите переназначить. \nВнимание: Стандартные кнопки навигации (Стрелки, OK, Назад, Домой, Громкость) переназначить нельзя в целях безопасности.</string>
+    <string name="toast_catcher_cancelled">Отменено</string>
+    <string name="toast_key_caught">Кнопка перехвачена! Выберите действие.</string>
+    <string name="action_for_key">Действие для кнопки: %1$s</string>
+    <string name="dialog_delete_remap_title">Удалить кастомное действие</string>
+    <string name="dialog_delete_remap_msg">Удалить кастомное действие для этой кнопки?</string>
+    <string name="btn_cancel">Отмена</string>
 </resources>

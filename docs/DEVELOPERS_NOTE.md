@@ -7,12 +7,14 @@ This document provides a technical overview, architectural design, and operation
 ## 1. Project Context & Motivation / Contexto y Motivación
 
 * **Target Device**: ZTE R2A TV Box (Android TV 14, API 34), distributed by the Spanish-Romanian provider **DIGI**.
-* **Primary Use Case**: Using physical keyboards on TV boxes deployed for kiosks, digital signage, billboards, or public displays, where the TV box acts as the rendering source connected to monitors/TVs/projectors.
+* **Primary Use Case**: Allowing normal users to use physical keyboards on their provider-locked TV boxes without restrictions, seamlessly hot-swapping to an on-screen keyboard when the remote is used, and remapping remote buttons.
 * **The "q/Q" Key Block Issue**: The telecom provider (DIGI) intercepted the physical `q` / `Q` key at the firmware level, assigning it to trigger a custom shortcut for their own VOD online streaming application. Consequently, the letter `q` became completely unavailable in all standard fields on the device.
 * **Missing OS Settings**: The customized Android TV 14 ROM lacks physical keyboard layout selection menus and layout switching utilities.
 * **The Solution**: 
   1. A low-level **Accessibility Service** (`KeyInterceptorService`) filters and captures key events at the system level before they reach the window manager.
   2. A zero-UI **Proxy Input Method Service** (`KeyInterceptorIME`) commits the translated characters directly to the active focus field.
+  3. A **Smart Switcher** engine monitors `InputDeviceListener` and `AccessibilityEvent` focus changes to hot-swap between physical and on-screen IMEs on the fly.
+  4. A **Catcher Mode** allows capturing generic remote hardware buttons and mapping them to Intents, Media Actions, or App launches.
 
 ---
 

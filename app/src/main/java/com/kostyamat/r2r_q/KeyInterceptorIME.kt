@@ -33,6 +33,16 @@ class KeyInterceptorIME : InputMethodService() {
         }
     }
 
+    override fun onBindInput() {
+        super.onBindInput()
+        Log.d("KeyInterceptorIME", "Proxy-IME onBindInput called")
+    }
+
+    override fun onStartInput(attribute: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
+        super.onStartInput(attribute, restarting)
+        Log.d("KeyInterceptorIME", "Proxy-IME onStartInput called (restarting=$restarting)")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         if (instance == this) instance = null

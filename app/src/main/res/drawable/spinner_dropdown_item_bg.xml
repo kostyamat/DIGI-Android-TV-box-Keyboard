@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused state -> Blue with Yellow outline -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#0D47A1" />
+            <stroke android:width="2dp" android:color="#FFD600" />
+        </shape>
+    </item>
+    
+    <!-- Selected state (current active choice) -> Dark Blue -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#1A237E" />
+        </shape>
+    </item>
+    
+    <!-- Normal state -> Dark gray -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1E1E1E" />
+        </shape>
+    </item>
+</selector>

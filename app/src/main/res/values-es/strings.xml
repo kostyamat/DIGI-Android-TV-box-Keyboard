@@ -8,11 +8,7 @@
     <string name="status_inactive">Estado: INACTIVO</string>
     <string name="adb_commands_title">Comandos ADB (toca para copiar):</string>
 
-    <string name="setup_wizard_title">Asistente de configuración</string>
-    <string name="step_enable_ime">1. Habilitar teclado</string>
-    <string name="step_set_default">2. Establecer como predeterminado</string>
-    <string name="step_enable_accessibility">3. Habilitar servicio de accesibilidad</string>
-    <string name="keyboard_setup_instruction">Active el teclado en la configuración y configúrelo como predeterminado:</string>
+
 
     <string name="languages_title">Diseños habilitados (Ctrl+Espacio para ciclar):</string>
     <string name="lang_en">Inglés</string>
@@ -37,10 +33,50 @@
     <string name="toast_accessibility_enabled_automatically">¡Servicio de accesibilidad activado automáticamente!</string>
     <string name="toast_ime_enabled_automatically">¡Teclado activado y establecido como predeterminado!</string>
 
-    <string name="adb_grant_secure_desc">1. Otorgar permiso WRITE_SECURE_SETTINGS (Requerido para activación automática):</string>
-    <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_auto_setup_title">Automatización ADB Local</string>
+    <string name="adb_auto_setup_desc">¡Automatice la configuración sin un PC! Primero debe habilitar la Depuración USB/Inalámbrica.</string>
+    <string name="btn_step_1_dev_options">Paso 1: Abrir opciones de desarrollador</string>
+    <string name="btn_step_2_auto_grant">Paso 2: Otorgar permisos automáticamente</string>
+    <string name="toast_secure_settings_granted">¡Permisos otorgados con éxito!</string>
+    <string name="toast_adb_failed">Error al conectar con ADB local. Asegúrese de que la Depuración esté activada.</string>
+    <string name="dialog_adb_rsa_title">Importante</string>
+    <string name="dialog_adb_rsa_msg">Aparecerá una solicitud del sistema "Permitir depuración por USB". DEBE marcar "Permitir siempre" y seleccionar "Aceptar" para completar la configuración.</string>
 
-    <string name="adb_restricted_settings_desc">2. Permitir configuraciones restringidas (Requerido si el botón 3 está deshabilitado/gris):</string>
-    <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
-    <string name="toast_secure_settings_granted">¡Permiso WRITE_SECURE_SETTINGS concedido correctamente!</string>
+    <string name="smart_switcher_title">Conmutador inteligente de IME</string>
+    <string name="smart_switcher_none">Ninguno (Desactivado)</string>
+    <string name="smart_switcher_desc">Seleccione el teclado en pantalla al que volver cuando el teclado físico esté desconectado:</string>
+    <string name="toast_ime_activated_short">Activado %1$s</string>
+    <string name="toast_ime_activated_long">Activado %1$s\nCambiar distribución - CTRL+Space o WIN</string>
+
+    <string name="q_action_title">Acción de la tecla DIGI Online</string>
+    <string name="q_action_desc">Qué hacer cuando se presiona el botón DIGI Online en el control remoto (cuando el teclado está desconectado):</string>
+    <string name="q_action_default">Por defecto</string>
+    <string name="q_action_back">Atrás (Back)</string>
+    <string name="q_action_home">Inicio (Home)</string>
+    <string name="q_action_play_pause">Reproducir/Pausar (Play/Pause)</string>
+    <string name="q_action_recents">Aplicaciones recientes (Recent Apps)</string>
+    <string name="q_action_settings">Ajustes (Settings)</string>
+    <string name="q_action_custom_intent">Introducir Intent personalizado...</string>
+    <string name="q_action_intent_dialog_title">Intent personalizado</string>
+    <string name="q_action_intent_dialog_msg">Introduzca Deep Link o URI de Intent</string>
+    <string name="q_action_custom_intent_hint">Ingrese el URI de Intent o Deep Link...</string>
+    <string name="dialog_delete_layout_title">Eliminar distribución</string>
+    <string name="dialog_delete_layout_msg">¿Estás seguro de que deseas eliminar \'%1$s\'?</string>
+    <string name="btn_delete">Eliminar</string>
+    <string name="dialog_layout_exists_title">La distribución existe</string>
+    <string name="dialog_layout_exists_msg">Ya existe una distribución con el ID \'%1$s\'.</string>
+    <string name="btn_overwrite">Sobrescribir</string>
+    <string name="btn_save_as_new">Guardar como nueva</string>
+
+    <string name="custom_remaps_title">Botones de control remoto</string>
+    <string name="custom_remaps_desc">Reasigna botones adicionales de tu control remoto (p. ej., Netflix) para iniciar tus aplicaciones. No afecta al teclado físico.</string>
+    <string name="btn_add_remap">Agregar Botón</string>
+    <string name="dialog_catch_key_title">Presiona el botón</string>
+    <string name="dialog_catch_key_msg">Presiona el botón de tu control remoto que deseas reasignar. \nNota: Las teclas de navegación estándar (Flechas, OK, Atrás, Inicio, Volumen) no se pueden reasignar por seguridad.</string>
+    <string name="toast_catcher_cancelled">Cancelado</string>
+    <string name="toast_key_caught">¡Botón capturado! Selecciona una acción.</string>
+    <string name="action_for_key">Acción para el botón: %1$s</string>
+    <string name="dialog_delete_remap_title">Eliminar acción personalizada</string>
+    <string name="dialog_delete_remap_msg">¿Eliminar la acción personalizada para este botón?</string>
+    <string name="btn_cancel">Cancelar</string>
 </resources>

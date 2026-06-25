@@ -30,97 +30,137 @@
             android:orientation="vertical"
             android:layout_marginBottom="16dp">
 
-            <!-- Заголовок Майстра налаштування -->
+            <!-- Автоматичне налаштування (Local ADB) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/setup_wizard_title"
-                android:textColor="@android:color/white"
+                android:text="@string/adb_auto_setup_title"
+                android:textColor="#FFD600"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="12dp" />
 
-            <!-- Кнопки кроків -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/adb_auto_setup_desc"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp" />
+
             <Button
-                android:id="@+id/btnEnableIme"
+                android:id="@+id/btnDevOptions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/step_enable_ime"
+                android:text="@string/btn_step_1_dev_options"
                 android:background="@drawable/btn_bg_selector"
                 android:textColor="@color/btn_text_selector"
                 android:layout_marginBottom="8dp" />
 
             <Button
-                android:id="@+id/btnSelectIme"
+                android:id="@+id/btnAutoGrant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/step_set_default"
-                android:background="@drawable/btn_bg_selector"
-                android:textColor="@color/btn_text_selector"
-                android:layout_marginBottom="8dp" />
-
-            <Button
-                android:id="@+id/btnEnableAccessibility"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/step_enable_accessibility"
-                android:background="@drawable/btn_bg_selector"
-                android:textColor="@color/btn_text_selector"
+                android:text="@string/btn_step_2_auto_grant"
+                android:background="@drawable/adb_btn_selector"
+                android:textColor="#FFD600"
                 android:layout_marginBottom="16dp" />
+        </LinearLayout>
 
-            <!-- Команди ADB -->
+        <!-- Розумне перемикання -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/smart_switcher_title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/smart_switcher_desc"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginBottom="6dp" />
+
+        <Spinner
+            android:id="@+id/spinnerFallbackIme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg_selector"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Дія клавіші DIGI Online (відображається лише на DIGI боксах) -->
+        <LinearLayout
+            android:id="@+id/digiWorkaroundContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/adb_commands_title"
-                android:textColor="#FFD600"
-                android:textSize="16sp"
+                android:text="@string/q_action_title"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:layout_marginBottom="12dp" />
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
 
-            <!-- ADB 1 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/adb_grant_secure_desc"
+                android:text="@string/q_action_desc"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
-                android:layout_marginBottom="4dp" />
-            <Button
-                android:id="@+id/cmdGrantSecure"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_grant_secure"
-                android:textAllCaps="false"
-                android:gravity="start"
-                android:textColor="#FFD600"
-                android:textSize="11sp"
-                android:padding="8dp"
-                android:background="#1E1E1E"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="6dp" />
 
-            <!-- ADB 2 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/adb_restricted_settings_desc"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp" />
-            <Button
-                android:id="@+id/cmdRestrictedSettings"
-                style="@style/Widget.AppCompat.Button.Borderless"
+            <Spinner
+                android:id="@+id/spinnerQAction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/adb_restricted_settings"
-                android:textAllCaps="false"
-                android:gravity="start"
-                android:textColor="#FFD600"
-                android:textSize="11sp"
-                android:padding="8dp"
-                android:background="#1E1E1E"
-                android:layout_marginBottom="12dp" />        </LinearLayout>
+                android:background="@drawable/btn_bg_selector"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
+
+        <!-- Кастомні кнопки пульта -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_remaps_title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_remaps_desc"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:id="@+id/remapsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1E1E1E"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnCatchKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_add_remap"
+            android:background="@drawable/btn_bg_selector"
+            android:textColor="@color/btn_text_selector"
+            android:layout_marginBottom="24dp" />
 
         <!-- Мови (завжди залишаються) -->
         <TextView
@@ -145,6 +185,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/import_custom_layout"
+            android:background="@drawable/btn_bg_selector"
+            android:textColor="@color/btn_text_selector"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:layout_gravity="end"
             android:layout_marginBottom="24dp" />
 

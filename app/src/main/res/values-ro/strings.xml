@@ -8,11 +8,7 @@
     <string name="status_inactive">Stare: INACTIV</string>
     <string name="adb_commands_title">Comenzi ADB (atingeți pentru a copia):</string>
 
-    <string name="setup_wizard_title">Asistent de configurare</string>
-    <string name="step_enable_ime">1. Activați tastatura</string>
-    <string name="step_set_default">2. Setați ca implicită</string>
-    <string name="step_enable_accessibility">3. Activați serviciul de accesibilitate</string>
-    <string name="keyboard_setup_instruction">Activați tastatura în setări și setați-o ca implicită:</string>
+
 
     <string name="languages_title">Aspecte activate (Ctrl+Space pentru a cicla):</string>
     <string name="lang_en">Engleză</string>
@@ -37,10 +33,52 @@
     <string name="toast_accessibility_enabled_automatically">Serviciul de accesibilitate a fost activat automat!</string>
     <string name="toast_ime_enabled_automatically">Tastatura a fost activată și setată ca implicită!</string>
 
-    <string name="adb_grant_secure_desc">1. Acordați permisiunea WRITE_SECURE_SETTINGS (Necesară pentru activarea automată):</string>
-    <string name="adb_grant_secure">adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_auto_setup_title">Automatizare Locală ADB</string>
+    <string name="adb_auto_setup_desc">Automatizați configurarea fără un PC! Mai întâi trebuie să activați Depanarea USB/Wireless.</string>
+    <string name="btn_step_1_dev_options">Pasul 1: Deschideți Opțiunile pentru dezvoltatori</string>
+    <string name="btn_step_2_auto_grant">Pasul 2: Acordați permisiunile automat</string>
+    <string name="toast_secure_settings_granted">Permisiunile au fost acordate cu succes!</string>
+    <string name="toast_adb_failed">Eroare la conectarea la ADB local. Asigurați-vă că Depanarea este activată.</string>
+    <string name="dialog_adb_rsa_title">Important</string>
+    <string name="dialog_adb_rsa_msg">Va apărea o solicitare de sistem "Permiteți depanarea USB". TREBUIE să bifați "Permiteți întotdeauna" și să selectați "OK" pentru a finaliza configurarea.</string>
 
-    <string name="adb_restricted_settings_desc">2. Permiteți setările restricționate (Necesar dacă butonul 3 este dezactivat/gri):</string>
-    <string name="adb_restricted_settings">adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow</string>
-    <string name="toast_secure_settings_granted">Permisiunea WRITE_SECURE_SETTINGS a fost acordată cu succes!</string>
+    <string name="smart_switcher_title">Comutator inteligent IME</string>
+    <string name="smart_switcher_none">Niciunul (Dezactivat)</string>
+    <string name="smart_switcher_desc">Selectați tastatura de pe ecran la care să reveniți când tastatura fizică este deconectată:</string>
+    <string name="toast_ime_activated_short">Activat %1$s</string>
+    <string name="toast_ime_activated_long">Activat %1$s\nSchimbare layout - CTRL+Space sau WIN</string>
+
+    <string name="q_action_title">Acțiunea tastei DIGI Online</string>
+    <string name="q_action_desc">Ce trebuie făcut la apăsarea butonului DIGI Online de pe telecomandă (când tastatura este deconectată):</string>
+    <string name="q_action_default">Mod implicit</string>
+    <string name="q_action_back">Înapoi (Back)</string>
+    <string name="q_action_home">Acasă (Home)</string>
+    <string name="q_action_play_pause">Redare/Pauză (Play/Pause)</string>
+    <string name="q_action_recents">Aplicații recente (Recent Apps)</string>
+    <string name="q_action_settings">Setări (Settings)</string>
+    <string name="q_action_custom_intent">Introduceți Intent personalizat...</string>
+    <string name="q_action_intent_dialog_title">Intent personalizat</string>
+    <string name="q_action_intent_dialog_msg">Introduceți Deep Link sau URI-ul Intent-ului</string>
+    <string name="q_action_custom_intent_hint">Introduceți URI-ul Intent sau Deep Link...</string>
+    <string name="dialog_delete_layout_title">Ștergeți aspectul</string>
+    <string name="dialog_delete_layout_msg">Sunteți sigur că doriți să ștergeți \'%1$s\'?</string>
+    <string name="btn_delete">Șterge</string>
+    <string name="dialog_layout_exists_title">Aspectul există</string>
+    <string name="dialog_layout_exists_msg">Un aspect cu ID-ul \'%1$s\' există deja.</string>
+    <string name="btn_overwrite">Suprascrie</string>
+    <string name="btn_save_as_new">Salvează ca nou</string>
+    <string name="btn_cancel">Anulează</string>
+    <string name="hint_new_layout_id">ID nou</string>
+    <string name="hint_new_layout_name">Nume nou</string>
+
+    <string name="custom_remaps_title">Butoane telecomandă</string>
+    <string name="custom_remaps_desc">Reatribuiți butoane suplimentare pe telecomandă (de ex. Netflix) pentru a lansa aplicațiile dorite. Nu afectează tastatura fizică.</string>
+    <string name="btn_add_remap">Adaugă Buton</string>
+    <string name="dialog_catch_key_title">Apăsați butonul</string>
+    <string name="dialog_catch_key_msg">Apăsați butonul de pe telecomandă pe care doriți să-l reatribuiți. \nNotă: Tastele standard de navigare (Săgeți, OK, Înapoi, Acasă, Volum) nu pot fi reatribuite din motive de securitate.</string>
+    <string name="toast_catcher_cancelled">Anulat</string>
+    <string name="toast_key_caught">Buton capturat! Selectați o acțiune.</string>
+    <string name="action_for_key">Acțiune pentru butonul: %1$s</string>
+    <string name="dialog_delete_remap_title">Ștergeți acțiunea personalizată</string>
+    <string name="dialog_delete_remap_msg">Ștergeți acțiunea personalizată pentru acest buton?</string>
 </resources>
