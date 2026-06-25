@@ -34,19 +34,22 @@ The primary use case is to allow normal users to freely use a physical keyboard 
 * **Free Alternative**: A free, open-source replacement for paid physical keyboard mappers on the Play Store.
 * **Bonus Layouts**: The `docs/` directory contains two extra layouts (`de.json` and `pl.json`) as examples. You can import them directly into the app for testing or edit them for your own needs.
 
-### 2. Quick Setup & ADB Activation
-Because Android TV 14 (API 34) enforces strict security limitations, automatic activation requires granting special permissions via ADB:
+### 2. Automated Setup (No PC Required)
+DIGI Keyboard features a built-in Local ADB system that automatically grants itself the necessary permissions without needing a computer.
 
-1. **Grant Secure Settings Access** (Required for the app to auto-enable services and manage the Smart Switcher):
-   ```bash
-   adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS
-   ```
-2. **Bypass Restricted Settings** (Required if installing the APK from a USB flash drive to unlock the Accessibility toggle):
-   ```bash
-   adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow
-   ```
+**Primary Method (Target Device: DIGI R2A):**
+1. **Developer Options**: Click the first button in the app's Wizard to instantly open Android Developer Options. (If it doesn't open, manually go to Settings -> System -> About -> click "Build" 7 times).
+2. **Enable USB Debugging**: Inside Developer Options, turn on **USB Debugging** (on some non-DIGI boxes, you might need to try Wireless Debugging instead).
+3. **Auto-Grant**: Return to the app and click the second Wizard button. The app will use a local ADB loopback to automatically grant itself the `WRITE_SECURE_SETTINGS` and `ACCESS_RESTRICTED_SETTINGS` permissions.
 
-Once executed, open the app, click the auto-grant button, and it will instantly configure itself. Cycle layouts with `Ctrl + Space` or `Win / Meta`.
+Once permissions are granted, the app configures itself. Cycle layouts with `Ctrl + Space` or `Win / Meta`.
+
+**Fallback Method (For PC):**
+If the automated method fails on your specific TV box, you can grant the permissions manually using a computer via ADB:
+```bash
+adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS
+adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow
+```
 
 ### 3. Project Documentation Links
 * [**Key Layouts Guide (JSON Customization)**](docs/KEYLAYOUTS.md) - Learn how to build and import custom keyboard maps.
@@ -75,17 +78,22 @@ El caso de uso principal es permitir a los usuarios utilizar libremente un tecla
 * **Alternativa Gratuita**: Un reemplazo gratuito y de código abierto para mapeadores de teclado de pago.
 * **Diseños Extra**: El directorio `docs/` contiene dos plantillas adicionales (`de.json` y `pl.json`). Puede importarlos directamente en la app para pruebas o editarlos según sus necesidades.
 
-### 2. Configuración Rápida y Activación por ADB
-Debido a las estrictas políticas de Android TV 14, la activación automática requiere otorgar permisos mediante ADB:
+### 2. Configuración Automática (Sin PC)
+DIGI Keyboard incluye un sistema ADB Local integrado que se otorga a sí mismo los permisos necesarios automáticamente sin necesidad de un ordenador.
 
-1. **Otorgar acceso a Ajustes Seguros**:
-   ```bash
-   adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS
-   ```
-2. **Permitir Ajustes Restringidos** (si instala desde USB):
-   ```bash
-   adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow
-   ```
+**Método Principal (Para DIGI R2A):**
+1. **Opciones de Desarrollador**: Pulse el primer botón en el Asistente de la app para abrir instantáneamente las Opciones de Desarrollador. (Si no se abre, vaya manualmente a Ajustes -> Sistema -> Información -> pulse "Compilación" 7 veces).
+2. **Activar Depuración USB**: Dentro de las Opciones de Desarrollador, active la **Depuración USB** (en algunas TV boxes que no sean de DIGI, puede que necesite probar con la Depuración Inalámbrica).
+3. **Auto-Otorgar**: Vuelva a la app y pulse el segundo botón. La aplicación usará un bucle ADB local para otorgarse automáticamente los permisos `WRITE_SECURE_SETTINGS` y `ACCESS_RESTRICTED_SETTINGS`.
+
+Una vez otorgados, la aplicación se configura sola. Cambie de idioma con `Ctrl + Espacio` o `Win / Meta`.
+
+**Método de Respaldo (Por PC):**
+Si el método automático falla en su dispositivo, puede otorgar los permisos manualmente usando un PC a través de ADB:
+```bash
+adb shell pm grant com.kostyamat.r2r_q android.permission.WRITE_SECURE_SETTINGS
+adb shell appops set com.kostyamat.r2r_q ACCESS_RESTRICTED_SETTINGS allow
+```
 
 ### 3. Enlaces a la Documentación
 * [**Guía de Distribuciones de Teclado (JSON)**](docs/KEYLAYOUTS.md) - Aprenda a crear mapas de teclado personalizados.
